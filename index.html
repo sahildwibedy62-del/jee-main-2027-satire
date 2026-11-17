@@ -6,21 +6,20 @@
 <title>JEE Main 2027: Competition Ka Chutiyapa — production preview</title>
 <style>
   body { margin: 0; background: #0d0c0b; color: #f3ecdc; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 24px; }
-  canvas { width: min(92vw, 1600px); aspect-ratio: 16 / 9; border: 4px solid #ffd60a; border-radius: 12px; }
+  canvas { height: min(80vh, 1200px); aspect-ratio: 9 / 16; border: 4px solid #ffd60a; border-radius: 12px; }
   .row { display: flex; gap: 24px; flex-wrap: wrap; justify-content: center; }
   h1 { font-family: Anton, sans-serif; letter-spacing: 1px; margin: 0; color: #ffd60a; }
   p { max-width: 640px; text-align: center; opacity: .8; }
 </style>
-  <script type="module" crossorigin src="/assets/index-3SKuagxP.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-BbR95qSy.css">
 </head>
 <body>
   <h1>JEE MAIN 2027 — WORK IN PROGRESS</h1>
   <p>The animation engine and character cast are done. Part 1 and Part 2 scenes are still in production. Below: the live model sheet and the source narration.</p>
-  <canvas id="c" width="1920" height="1080"></canvas>
+  <canvas id="c" width="1080" height="1920"></canvas>
   <div class="row">
     <label>Part 1 narration<br /><audio controls src="/audio/part1.mp3"></audio></label>
     <label>Part 2 narration<br /><audio controls src="/audio/part2.mp3"></audio></label>
   </div>
+  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
