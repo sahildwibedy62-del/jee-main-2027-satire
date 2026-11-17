@@ -286,12 +286,12 @@ export function cueAt(film, t) {
 export function drawCaption(ctx, film, t) {
   const c = cueAt(film, t);
   if (!c) return;
-  const size = 46;
-  const maxW = 900;
+  const size = 40;
+  const maxW = 1400;
   const lines = wrap(ctx, c.text, maxW, size, FONT.ui, '800');
   const lh = size * 1.28;
   const boxH = lines.length * lh + 40;
-  const y0 = 1565 - boxH / 2;
+  const y0 = H - 92 - boxH / 2;
   const fadeIn = clamp((t - (c.s - 0.05)) / 0.1);
   const fadeOut = 1 - clamp((t - c.e - 0.1) / 0.15);
   const a = Math.min(fadeIn, fadeOut);

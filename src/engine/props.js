@@ -4,7 +4,7 @@ import { card, rr, circle, line, halftone, spinner, progress, burst, rays, star,
 import { txt, wrap } from './type.js';
 
 /** 2.5D floor grid receding to a horizon (miniature-set feel). */
-export function floor(ctx, { horizon = 900, color = PAL.paper2, lineColor = 'rgba(13,12,11,0.18)', vx = W / 2, scroll = 0 } = {}) {
+export function floor(ctx, { horizon = 640, color = PAL.paper2, lineColor = 'rgba(13,12,11,0.18)', vx = W / 2, scroll = 0 } = {}) {
   ctx.fillStyle = color;
   ctx.fillRect(-200, horizon, W + 400, H - horizon + 200);
   ctx.strokeStyle = lineColor;
@@ -467,24 +467,25 @@ export function sun(ctx, x, y, r, t, color = PAL.yellow) {
 }
 
 /** City/window blinds background used for rooms. */
-export function room(ctx, t, { wall = PAL.paper, night = false, windowX = 760, poster = 'IIT YA KUCH NAHI' } = {}) {
+export function room(ctx, t, { wall = PAL.paper, night = false, windowX = 1440, poster = 'IIT YA KUCH NAHI', floorY = 820, posterX = 300, windowY = 120 } = {}) {
   ctx.fillStyle = wall;
-  ctx.fillRect(-200, -200, W + 400, 1500);
-  halftone(ctx, 0, 0, W, 1300, { color: night ? PAL.ink : PAL.paper3, size: 28, max: 0.3, fade: 'down', alpha: 0.6 });
+  ctx.fillRect(-200, -200, W + 400, floorY + 200);
+  halftone(ctx, 0, 0, W, floorY, { color: night ? PAL.ink : PAL.paper3, size: 28, max: 0.3, fade: 'down', alpha: 0.6 });
   // window
-  card(ctx, windowX - 170, 260, 340, 400, { fill: night ? '#13233a' : PAL.cyan, r: 8, shadow: 12 });
+  const wy = windowY;
+  card(ctx, windowX - 170, wy, 340, 400, { fill: night ? '#13233a' : PAL.cyan, r: 8, shadow: 12 });
   if (night) {
-    circle(ctx, windowX + 60, 360, 46, PAL.paper, PAL.ink, 5);
-    for (let i = 0; i < 8; i++) star(ctx, windowX - 140 + hash(i, 3) * 280, 290 + hash(i, 4) * 340, 8, PAL.white, null, 0);
+    circle(ctx, windowX + 60, wy + 100, 46, PAL.paper, PAL.ink, 5);
+    for (let i = 0; i < 8; i++) star(ctx, windowX - 140 + hash(i, 3) * 280, wy + 30 + hash(i, 4) * 340, 8, PAL.white, null, 0);
   } else {
-    circle(ctx, windowX + 70, 350, 50, PAL.yellow, PAL.ink, 5);
+    circle(ctx, windowX + 70, wy + 90, 50, PAL.yellow, PAL.ink, 5);
   }
-  line(ctx, windowX, 260, windowX, 660, PAL.ink, 8);
-  line(ctx, windowX - 170, 460, windowX + 170, 460, PAL.ink, 8);
+  line(ctx, windowX, wy, windowX, wy + 400, PAL.ink, 8);
+  line(ctx, windowX - 170, wy + 200, windowX + 170, wy + 200, PAL.ink, 8);
   // poster
   if (poster) {
     ctx.save();
-    ctx.translate(220, 420);
+    ctx.translate(posterX, wy + 200);
     ctx.rotate(-0.06);
     card(ctx, -150, -190, 300, 380, { fill: PAL.yellow, r: 6, shadow: 10 });
     const ls = wrap(ctx, poster, 240, 60, FONT.display, '');
@@ -493,8 +494,8 @@ export function room(ctx, t, { wall = PAL.paper, night = false, windowX = 760, p
   }
   // floor
   ctx.fillStyle = night ? '#2a241c' : PAL.paper3;
-  ctx.fillRect(-200, 1300, W + 400, 900);
-  line(ctx, -200, 1300, W + 200, 1300, PAL.ink, 8);
+  ctx.fillRect(-200, floorY, W + 400, H - floorY + 200);
+  line(ctx, -200, floorY, W + 200, floorY, PAL.ink, 8);
 }
 
 /** Server rack. */

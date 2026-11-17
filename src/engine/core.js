@@ -2,8 +2,8 @@
 // Everything here is pure: the same input always gives the same output,
 // which is what makes frame-accurate rendering at any timestamp possible.
 
-export const W = 1080;
-export const H = 1920;
+export const W = 1920;
+export const H = 1080;
 export const FPS = 30;
 
 export const PAL = {

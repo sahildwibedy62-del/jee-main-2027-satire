@@ -21,10 +21,11 @@ const ts = times === 'all' ? film.scenes.map((s) => +(s.start + Math.min(1.2, (s
 const cols = +(colsArg || Math.min(ts.length, 4));
 const scale = +(scaleArg || 0.25);
 const rows = Math.ceil(ts.length / cols);
-const fw = 1080 * scale, fh = 1920 * scale;
+const { W, H } = await import('../src/engine/core.js');
+const fw = W * scale, fh = H * scale;
 const sheet = createCanvas(cols * fw, rows * fh);
 const sx = sheet.getContext('2d');
-const frame = createCanvas(1080, 1920);
+const frame = createCanvas(W, H);
 const fx = frame.getContext('2d');
 let worst = 0;
 for (let i = 0; i < ts.length; i++) {

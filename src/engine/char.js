@@ -1,6 +1,6 @@
 // Character rig. One parametric 2D cartoon student with variants, expressions and poses.
 // Coordinates: origin at the feet centre, figure ~640px tall at scale 1.
-import { PAL, FONT, TAU, clamp, lerp, ease, hash, boil, noise } from './core.js';
+import { W, PAL, FONT, TAU, clamp, lerp, ease, hash, boil, noise } from './core.js';
 import { circle, drop, heart, star } from './gfx.js';
 
 export const KINDS = {
@@ -755,7 +755,7 @@ function extras(ctx, expr, t, seed, o) {
 }
 
 /** Crowd of simplified student heads/shoulders arranged in rows (exam hall). */
-export function crowd(ctx, t, { rows = 10, cols = 12, x0 = 0, y0 = 700, x1 = 1080, y1 = 1800, keep = 1, seed = 3, desks = true, shrink = 0 } = {}) {
+export function crowd(ctx, t, { rows = 10, cols = 12, x0 = 0, y0 = 380, x1 = W, y1 = 1000, keep = 1, seed = 3, desks = true, shrink = 0 } = {}) {
   for (let r = 0; r < rows; r++) {
     const k = r / (rows - 1);
     const y = lerp(y0, y1, ease.inQuad(k));
